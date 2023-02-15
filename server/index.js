@@ -18,7 +18,7 @@ let users = []
 
 // socket io connection
 socketIO.on('connection', (socket) => {
-    console.log(`⚡: ${socket.id} user just connected!`)  
+    console.log(`${socket.id} user just connected!`)  
 
     // send message
     socket.on("message", data => {
@@ -38,7 +38,7 @@ socketIO.on('connection', (socket) => {
  
     // disconenct user
     socket.on('disconnect', () => {
-      console.log('🔥: A user disconnected');
+      console.log('A user disconnected');
       users = users.filter(user => user.socketID !== socket.id)
       socketIO.emit("newUserResponse", users)
       socket.disconnect()
