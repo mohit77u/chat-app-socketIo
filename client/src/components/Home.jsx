@@ -26,6 +26,7 @@ export default function Home({socket}) {
         <div className="auth min-h-screen flex items-center justify-center backdrop-blur-[20px]">
             <div className="sm:min-w-[330px] min-w-[300px] sm:max-w-[400px] max-w-[400px]">
                 <div className="text-center mb-4">
+                    <img src="/logo.png" alt="logo" class="mx-auto max-w-[60px] mb-4" />
                     <p className="text-[19px] text-slate-300">Chat App, The Real Thing</p>
                 </div>
                 <div className="p-6 rounded gradient-bg border border-white/10">
@@ -41,7 +42,7 @@ export default function Home({socket}) {
                         </div>
                         <div className="form-group mb-3">
                             <button type="submit" className="w-full text-sm bg-blue-500 text-center text-white px-2 py-2 rounded flex justify-center items-center">
-                                <span>Sign In</span> 
+                                <span>Join Chat</span> 
                             </button>
                         </div>
                     </form>

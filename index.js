@@ -11,6 +11,7 @@ const socketIO = require('socket.io')(http, {
       origin: "http://localhost:3000"
   }
 });
+import { writeFile } from "fs";
 
 // apply cors
 app.use(cors())
@@ -35,6 +36,16 @@ socketIO.on('connection', (socket) => {
       users.push(data)
       socketIO.emit("newUserResponse", users)
     })
+
+    // // handle file
+    // socket.on("upload", (file, callback) => {
+    //   console.log(file); // <Buffer 25 50 44 ...>
+  
+    //   // save the content to the disk, for example
+    //   writeFile("/client/public/uploads", file, (err) => {
+    //     callback({ message: err ? "failure" : "success" });
+    //   });
+    // });
  
     // disconenct user
     socket.on('disconnect', () => {
