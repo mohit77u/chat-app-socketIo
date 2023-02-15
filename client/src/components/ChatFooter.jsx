@@ -4,10 +4,13 @@ export default function ChatFooter({socket}) {
 
     const [message, setMessage] = useState("");
     // const [file, setFile] = useState([]);
+
+    // handle typing 
     const handleTyping = () => socket.emit("typing",`${localStorage.getItem("userName")} is typing`)
 
     const handleSendMessage = (e) => {
         e.preventDefault()
+        // check if message have value then send it
         if(message.trim() && localStorage.getItem("userName")) {
             socket.emit("message", 
                 {
@@ -35,15 +38,17 @@ export default function ChatFooter({socket}) {
                         <img src="/images/attachment.png" className="max-w-[30px]" alt="attach" />
                         {/* <input type='file' className="hidden" onChange={handleAttachement} /> */}
                     </label>
+                    {/* input */}
                     <input 
                         type="text" 
-                        placeholder='Write message' 
+                        placeholder='Enter message here...' 
                         className='border border-white/10 rounded w-full py-3 px-4 bg-transparent text-gray-300 focus:outline-none focus:ring-0' 
                         value={message} 
                         onChange={e => {handleTyping(); setMessage(e.target.value)} }
                         // onKeyDown={handleTyping}
                     />
                 </div>
+                {/* send button */}
                 <button className="bg-green-500 px-4 py-3 text-white font-medium rounded flex gap-2 justify-center items-center">
                     Send
                     <img src="/images/send.png" alt="send" className='max-w-[20px]' />

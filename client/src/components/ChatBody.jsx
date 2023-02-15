@@ -6,6 +6,7 @@ export default function ChatBody({messages, typingStatus, lastMessageRef}) {
 
     const navigate = useNavigate()
   
+    // handle chat leave 
     const handleLeaveChat = () => {
         localStorage.removeItem("userName")
         navigate("/")
@@ -13,6 +14,7 @@ export default function ChatBody({messages, typingStatus, lastMessageRef}) {
     }
     return (
         <>
+            {/* top header */}
             <header className='flex justify-between items-center bg-slate-900 p-4'>
                 <div>
                     <h2 className='text-gray-300 text-[20px]'>Chats</h2>
@@ -28,6 +30,7 @@ export default function ChatBody({messages, typingStatus, lastMessageRef}) {
             <div className='pb-20 pt-5 md:min-h-[85vh] md:max-h-[85vh] min-h-[66vh] max-h-[66vh] overflow-y-auto relative px-4'>
                 {messages?.map(message => (
                     message?.name === localStorage.getItem("userName") ? (
+                        // left message
                         <div className="flex justify-start" key={message?.id}>
                             <div class="text-left my-4">
                                 <div className="flex items-end gap-4">
@@ -44,6 +47,7 @@ export default function ChatBody({messages, typingStatus, lastMessageRef}) {
                             </div>
                         </div>
                     ): (
+                        // right message
                         <div className="flex justify-end" key={message?.id}>
                             <div class="text-right my-4">
                                 <div className="flex items-end gap-4">
@@ -61,6 +65,7 @@ export default function ChatBody({messages, typingStatus, lastMessageRef}) {
                         </div>
                     )
                 ))}
+                {/* scroll to last message ref div */}
                 {messages?.length > 0 && (
                     <div ref={lastMessageRef}></div> 
                 )}
