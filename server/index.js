@@ -1,32 +1,42 @@
+// dot env file configure
+require('dotenv').config();
+
+// express ap init
 const express = require("express")
 const app = express()
 const cors = require("cors")
 const http = require('http').Server(app);
-const PORT = 4000
 const socketIO = require('socket.io')(http, {
-    cors: {
-        origin: "http://localhost:3000"
-    }
+  cors: {
+      origin: "http://localhost:3000"
+  }
 });
 
+// apply cors
 app.use(cors())
 let users = []
 
+// socket io connection
 socketIO.on('connection', (socket) => {
     console.log(`⚡: ${socket.id} user just connected!`)  
+
+    // send message
     socket.on("message", data => {
       socketIO.emit("messageResponse", data)
     })
 
+    // on type
     socket.on("typing", data => (
       socket.broadcast.emit("typingResponse", data)
     ))
 
+    // new user register
     socket.on("newUser", data => {
       users.push(data)
       socketIO.emit("newUserResponse", users)
     })
  
+    // disconenct user
     socket.on('disconnect', () => {
       console.log('🔥: A user disconnected');
       users = users.filter(user => user.socketID !== socket.id)
@@ -40,6 +50,6 @@ app.get("/api", (req, res) => {
 });
 
    
-http.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
+http.listen(process.env.PORT || 4000, () => {
+    console.log(`Server listening on ${process.env.PORT}`);
 });
