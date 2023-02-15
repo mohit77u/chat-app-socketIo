@@ -23,10 +23,10 @@ export default function ChatPage({socket}) {
     }, [messages]);
 
     return (
-        <div>
-            <div className="chat">
+        <div className="bg-slate-900 max-h-screen">
+            <div className="flex flex-wrap justify-between items-start">
                 <ChatBar socket={socket}/>
-                <div className='chat__main'>
+                <div className='w-full md:ml-[22rem] min-h-screen max-h-screen relative'>
                     <ChatBody messages={messages} typingStatus={typingStatus} lastMessageRef={lastMessageRef}/>
                     <ChatFooter socket={socket}/>
                 </div>

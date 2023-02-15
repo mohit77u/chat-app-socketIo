@@ -26,12 +26,12 @@ export default function Home({socket}) {
         <div className="auth min-h-screen flex items-center justify-center backdrop-blur-[20px]">
             <div className="sm:min-w-[330px] min-w-[300px] sm:max-w-[400px] max-w-[400px]">
                 <div className="text-center mb-4">
-                    <p className="text-[16px] text-slate-300">Chat App, The Real Thing</p>
+                    <p className="text-[19px] text-slate-300">Chat App, The Real Thing</p>
                 </div>
                 <div className="p-6 rounded gradient-bg border border-white/10">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group mb-3">
-                            <label className="block mb-2 text-xs text-slate-300">Username</label>
+                            <label className="block mb-2 text-md text-slate-300">Username</label>
                             <input type="text" className={userNameError ? 'border-red-500 w-full text-xs bg-transparent focus:outline-none text-slate-300 border px-2 py-2 rounded' : 'border-white/10 w-full text-xs bg-transparent focus:outline-none text-slate-300 border px-2 py-2 rounded'} value={userName} 
                             onChange = {e => setUserName(e.target.value)} />
                             {/* error message username */}

@@ -7,7 +7,7 @@ const socket = socketIO.connect("http://localhost:4000")
 
 export default function App() {
   return (
-    <div className="bg-dark-primary">
+    <div className="bg-slate-900">
        <Router>
             <Routes>
                 <Route path="/" element={<Home socket={socket}/>}></Route>
